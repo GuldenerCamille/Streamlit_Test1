@@ -4,7 +4,7 @@ import joblib
 from utils import *
 
 # Load the model
-model = joblib.load("model.pickle")
+model = joblib.load("model.pkl")
 
 if "reset" not in st.session_state:
     st.session_state["reset"] = False
