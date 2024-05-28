@@ -11,11 +11,11 @@ except Exception as e:
 
 # Define the valid values for each feature
 valid_values = {
-    "Intake_Type": ['Stray', 'Public Assist', 'Owner Surrender', 'Abandoned', 'Euthanasia Request'],
-    "Intake_Condition": ['Normal', 'Sick', 'Injured', 'Pregnant', 'Nursing', 'Aged', 'Medical', 'Unknown', 'Congenital', 'Other', 'Behavior', 'Neonatal', 'Med Attn', 'Feral'],
-    "Animal_Type": ['Dog', 'Cat'],
-    "Sex_Upon_Intake": ['Neutered Male', 'Spayed Female', 'Intact Male', 'Intact Female', 'Unknown'],
-    "Animal_Group": ['Hound Group', 'Sporting Group', 'Cat', 'Working Group', 'Terrier Group', 'Toy Group', 'Herding Group', 'Non-Sporting Group', 'Other']
+    "Intake_Type": ['stray', 'public assist', 'owner surrender', 'abandoned', 'euthanasia request'],
+    "Intake_Condition": ['normal', 'sick', 'injured', 'pregnant', 'nursing', 'aged', 'medical', 'unknown', 'congenital', 'other', 'behavior', 'neonatal', 'med attn', 'feral'],
+    "Animal_Type": ['dog', 'cat'],
+    "Sex_Upon_Intake": ['neutered male', 'spayed female', 'intact male', 'intact female', 'unknown'],
+    "Animal_Group": ['hound group', 'sporting group', 'cat', 'working group', 'terrier group', 'toy group', 'herding group', 'non-sporting group', 'other']
 }
 
 if model:
