@@ -36,7 +36,7 @@ if model:
                 "Intake_Type": Intake_Type,
                 "Intake_Condition": Intake_Condition,
                 "Animal_Type": Animal_Type,
-                "Sex_Upon_Intake": Sex_upon_Intake,
+                "Sex_Upon_Intake": Sex_Upon_Intake,
                 "Animal_Group": Animal_Group,
                 "Age_Upon_Intake_Days": Age_Upon_Intake_Days
             }
