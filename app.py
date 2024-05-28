@@ -48,10 +48,6 @@ if model:
         if not Intake_Type or not Intake_Condition or not Animal_Type or not Sex_Upon_Intake or not Age_Upon_Intake_Days or not Animal_Group:
             st.error("Please fill out all the fields")
         else:
-            # Print the column names for debugging
-            st.write("Columns in model_data_df:")
-            st.write(model_data_df.columns)
-
             try:
                 prediction = model.predict(model_data_df)[0]
                 st.write(f"Prediction result: {prediction}")
