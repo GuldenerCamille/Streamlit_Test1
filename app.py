@@ -28,7 +28,7 @@ if model:
             Intake_Type = st.text_input(label="**Intake Type :**")
             Intake_Condition = st.text_input(label="**Intake Condition :**")
             Animal_Type = st.text_input(label="**Animal Type :**")
-            Sex_upon_Intake = st.text_input(label="**Sex upon Intake :**")
+            Sex_Upon_Intake = st.text_input(label="**Sex upon Intake :**")
             Age_Upon_Intake_Days = st.number_input(label="**Age in days :**", step=1)
             Animal_Group = st.text_input(label="**Animal Group :**")
 
@@ -36,7 +36,7 @@ if model:
                 "Intake_Type": Intake_Type,
                 "Intake_Condition": Intake_Condition,
                 "Animal_Type": Animal_Type,
-                "Sex_upon_Intake": Sex_upon_Intake,
+                "Sex_Upon_Intake": Sex_upon_Intake,
                 "Animal_Group": Animal_Group,
                 "Age_Upon_Intake_Days": Age_Upon_Intake_Days
             }
