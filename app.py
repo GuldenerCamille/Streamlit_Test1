@@ -45,7 +45,7 @@ if model:
 
     # Add a button for prediction
     if st.button("Get Prediction"):
-        if not Intake_Type or not Intake_Condition or not Animal_Type or not Sex_upon_Intake or not Age_Upon_Intake_Days or not Animal_Group:
+        if not Intake_Type or not Intake_Condition or not Animal_Type or not Sex_Upon_Intake or not Age_Upon_Intake_Days or not Animal_Group:
             st.error("Please fill out all the fields")
         else:
             # Print the column names for debugging
