@@ -1,50 +1,64 @@
 import streamlit as st
 import pandas as pd
 import joblib
-from utils import *
 
 # Load the model
-model = joblib.load("model.pkl")
+try:
+    model = joblib.load("model.pkl")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    model = None
 
-if "reset" not in st.session_state:
-    st.session_state["reset"] = False
+if model:
+    if "reset" not in st.session_state:
+        st.session_state["reset"] = False
 
-col1, col2 = st.columns((1, 1), gap="small")
+    col1, col2 = st.columns((1, 1), gap="small")
 
-with col1:
-    st.markdown("#")
-    st.markdown("#")
-    with st.container(border=True):
-        header("Animal adoption", 3)
-        header("Enter the animal's information :", 4)
+    with col1:
+        st.markdown("#")
+        st.markdown("#")
+        with st.container(border=True):
+            st.header("Animal adoption")
+            st.subheader("Enter the animal's information:")
 
-        col11, col12 = st.columns((1, 1), gap="medium")
+            col11, col12 = st.columns((1, 1), gap="medium")
 
-        with col11:
+            # Input fields
             Intake_Type = st.text_input(label="**Intake Type :**")
             Intake_Condition = st.text_input(label="**Intake Condition :**")
             Animal_Type = st.text_input(label="**Animal Type :**")
-
-        with col12:
             Sex_upon_Intake = st.text_input(label="**Sex upon Intake :**")
             Age_Upon_Intake_Days = st.number_input(label="**Age in days :**", step=1)
             Animal_Group = st.text_input(label="**Animal Group :**")
 
-        model_data_dict = {
-            "Intake_Type": Intake_Type,
-            "Intake_Condition": Intake_Condition,
-            "Animal_Type": Animal_Type,
-            "Sex_upon_Intakee": Sex_upon_Intake,
-            "Age_Upon_Intake_Days": Age_Upon_Intake_Days,
-            "Animal_Group": Animal_Group
-        }
+            model_data_dict = {
+                "Intake_Type": Intake_Type,
+                "Intake_Condition": Intake_Condition,
+                "Animal_Type": Animal_Type,
+                "Sex_upon_Intake": Sex_upon_Intake,
+                "Animal_Group": Animal_Group,
+                "Age_Upon_Intake_Days": Age_Upon_Intake_Days
+            }
 
-        model_data_df = pd.DataFrame(model_data_dict, index=[0])
+            model_data_df = pd.DataFrame(model_data_dict, index=[0])
 
-# Add a button for prediction
-if st.button("Get Prediction"):
-    if not Intake_Type or not Intake_Condition or not Animal_Type or not Sex_upon_Intake or not Age_Upon_Intake_Days or not Animal_Group:
-        st.error("Please fill out all the fields")
-    else:
-        prediction = model.predict(model_data_df)
-        st.write(f"Prediction result : {prediction[0]}")
+    # Add a button for prediction
+    if st.button("Get Prediction"):
+        if not Intake_Type or not Intake_Condition or not Animal_Type or not Sex_upon_Intake or not Age_Upon_Intake_Days or not Animal_Group:
+            st.error("Please fill out all the fields")
+        else:
+            # Print the column names for debugging
+            st.write("Columns in model_data_df:")
+            st.write(model_data_df.columns)
+
+            try:
+                prediction = model.predict(model_data_df)[0]
+                st.write(f"Prediction result: {prediction}")
+            except KeyError as e:
+                st.error(f"KeyError: {e}")
+                st.write(f"Expected columns: {model.named_steps['preprocessor'].transformers_[0][2]}")
+                st.write(f"Columns in model_data_df: {model_data_df.columns}")
+            except Exception as e:
+                st.error(f"Error making prediction: {e}")
+                st.text(e)
